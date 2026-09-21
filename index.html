@@ -166,6 +166,74 @@ h1 em,h2 em{
     text-transform:uppercase
 }
 
+/* =========================
+   SONG EXPLANATIONS
+========================= */
+
+/* =========================
+   SONG EXPLANATIONS
+========================= */
+
+.song-explanations{
+    width:100%;
+    max-width:700px;
+    margin:100px auto 120px;
+}
+
+.songs-intro{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.songs-intro span{
+    display:block;
+    color:var(--muted);
+    font-size:.6rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    margin-bottom:20px;
+}
+
+.songs-intro p{
+    max-width:500px;
+    margin:0 auto;
+    color:var(--muted);
+    font-size:.95rem;
+    line-height:1.8;
+    opacity:1;
+}
+
+.song-item{
+    display:grid;
+    grid-template-columns:50px 1fr;
+    gap:20px;
+    padding:35px 0;
+    border-top:1px solid var(--line);
+}
+
+.song-number{
+    color:var(--muted);
+    font-size:.65rem;
+    letter-spacing:.15em;
+    padding-top:7px;
+}
+
+.song-content h3{
+    margin:0 0 12px;
+    font-family:var(--serif);
+    font-size:1.7rem;
+    font-weight:400;
+}
+
+.song-content p{
+    margin:0;
+    color:var(--muted);
+    font-size:.9rem;
+    line-height:1.9;
+    max-width:570px;
+    opacity:1;
+}
+
 /* MAIN */
 
 main{
@@ -476,6 +544,91 @@ p{
     text-align:right;
 }
 
+.playlist-wrap{
+    width:100%;
+    max-width:700px;
+    margin:50px auto 80px;
+    opacity:1;
+    transform:translateY(20px);
+    transition:1.8s ease;
+}
+
+.playlist-wrap.show{
+    opacity:1;
+    transform:none;
+}
+
+.playlist-label{
+    margin-bottom:20px;
+    color:var(--muted);
+    font-size:.6rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    text-align:center;
+}
+
+.playlist-wrap iframe{
+    display:block;
+    width:100%;
+    border:0;
+}
+
+.final-index{
+    width:100%;
+    max-width:900px;
+    margin:120px auto 40px;
+}
+
+.index-heading{
+    margin-bottom:25px;
+    color:var(--muted);
+    font-size:.6rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    text-align:center;
+}
+
+.index-table{
+    width:100%;
+    border-top:1px solid var(--line);
+}
+
+.index-row{
+    display:grid;
+    grid-template-columns:70px 1fr 1fr 1fr;
+    gap:25px;
+    align-items:center;
+
+    padding:16px 0;
+
+    border-bottom:1px solid var(--line);
+
+    font-size:.8rem;
+}
+
+.index-header{
+    color:var(--muted);
+    font-size:.6rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+}
+
+.index-row > span:first-child{
+    color:var(--muted);
+    font-size:.65rem;
+    letter-spacing:.12em;
+}
+
+.index-row a{
+    color:var(--fg);
+    text-decoration:none;
+    transition:opacity .3s ease;
+}
+
+.index-row a:hover{
+    opacity:.5;
+}
+
 footer{
     text-align:center;
     background:#050505;
@@ -561,7 +714,8 @@ footer{
 
         <p>
             I don't know if mayroong perfect way para magpaalam sa taong mahal
-            mo pa rin. So I'm going to say nalang lahat ng nararamdaman ko so that I can move forward without having any unsaid feelings.
+            mo pa rin. So I'm going to say nalang lahat ng nararamdaman ko so that I can move forward without having any unsaid feelings and leave you with
+            7 messages, 7 memories, and 7 songs.
         </p>
 
         <button class="open" id="beginButton">
@@ -582,7 +736,7 @@ footer{
 
 <section class="reveal">
 
-    <div class="chapter">
+    <div class="chapter" id="chapter-01">
         01 — Only if it were up to me
     </div>
 
@@ -625,7 +779,7 @@ footer{
 
 <section class="reveal">
 
-    <div class="chapter">
+    <div class="chapter" id="chapter-02">
         02 — The moments I regret
     </div>
 
@@ -667,7 +821,7 @@ footer{
 
 <section class="reveal">
 
-    <div class="chapter">
+    <div class="chapter" id="chapter-03">
         03 — The Memories I Love
     </div>
 
@@ -677,12 +831,11 @@ footer{
 
     <p class="lead">
         I don't want the ending to rewrite everything
-        that came before it. Just because it didn't work doesn't mean it's
-        meaningless to me, it just wasn't meant to be.
+        that came before it.
     </p>
 
     <p>
-        These are six memories that I keep coming back to.
+        These are seven memories that I keep coming back to.
         Maybe they're ordinary moments to you now, or something na nakalimutan mo na, but they
         carry a lot of sentimental value for me.
     </p>
@@ -692,7 +845,7 @@ footer{
 
         <!-- MEMORY 1 -->
 
-        <article class="memory">
+        <article class="memory" id="memory-01">
 
             <div class="photo">
                 <img src="memory1.jpg"
@@ -740,7 +893,7 @@ footer{
 
         <!-- MEMORY 2 -->
 
-        <article class="memory">
+        <article class="memory" id="memory-02">
 
             <div class="photo">
                 <img src="memory2.jpg"
@@ -784,7 +937,7 @@ footer{
 
         <!-- MEMORY 3 -->
 
-        <article class="memory">
+        <article class="memory" id="memory-03">>
 
             <div class="photo">
                 <img src="memory3.jpg"
@@ -824,15 +977,55 @@ footer{
 
         </article>
 
-        <!-- MEMORY 4 -->
+         <!-- MEMORY 4 -->
 
-        <article class="memory">
+        <article class="memory" id="memory-04">
 
             <div class="photo">
                 <img src="memory4.jpg"
                      alt="Memory 4"
                      onerror="this.style.display='none'">
                 <span>memory 4</span>
+            </div>
+
+            <div class="memory-content">
+
+                <div class="memory-number">
+                    August 07, 2026
+                </div>
+
+                <h3>
+                    Stolen Moments
+                </h3>
+
+                <p>
+                    This was the night na umuwi tayo kila Japes after nating mag Oldmoon. That was probably the best day that I shared with you. Sobrang consisten nung araw na 'yon.
+                    Ramdam na ramdam ko 'yung feelings that we share. That time na kayakap kita habang tulog ka, parang ayoko nalang umalis don. Na sana gano'n nalang tayo lagi.
+                </p>
+
+                <p>
+                    I'm guilty for taking pictures without your permission, and I'm sorry for that. Sobrang saya lang talaga ng pakiramdam ko that time, kaya I didn't wanna miss that chance
+                    na magkaroon ng something to hold on para maalala ko lagi 'yung moment na 'yon. Everytime na namimiss kita or magkaaway tayo, paulit ulit ko lang siyang pinapanood and gumagaan 'yung
+                    pakiramdam ko kahit papano.
+                </p>
+
+                <div class="caption">
+                    the best day
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- MEMORY 5 -->
+
+        <article class="memory" id="memory-05">
+
+            <div class="photo">
+                <img src="memory5.jpg"
+                     alt="Memory 5"
+                     onerror="this.style.display='none'">
+                <span>memory 5</span>
             </div>
 
             <div class="memory-content">
@@ -870,15 +1063,15 @@ footer{
         </article>
 
 
-        <!-- MEMORY 5 -->
+        <!-- MEMORY 6 -->
 
-        <article class="memory">
+        <article class="memory" id="memory-06">
 
             <div class="photo">
-                <img src="memory5.jpg"
-                     alt="Memory 5"
+                <img src="memory6.jpg"
+                     alt="Memory 6"
                      onerror="this.style.display='none'">
-                <span>memory 5</span>
+                <span>memory 6</span>
             </div>
 
             <div class="memory-content">
@@ -917,15 +1110,15 @@ footer{
         </article>
 
 
-        <!-- MEMORY 6 -->
+        <!-- MEMORY 7 -->
 
-        <article class="memory">
+        <article class="memory" id="memory-07">
 
             <div class="photo">
-                <img src="memory6.jpg"
-                     alt="Memory 6"
+                <img src="memory7.jpg"
+                     alt="Memory 7"
                      onerror="this.style.display='none'">
-                <span>memory 6</span>
+                <span>memory 7</span>
             </div>
 
             <div class="memory-content">
@@ -962,6 +1155,7 @@ footer{
 
         </article>
 
+
     </div>
 
 
@@ -984,8 +1178,8 @@ footer{
 
     <div class="letter">
 
-        <div class="letter-head">
-            the things I needed to say
+        <div class="chapter" id="chapter-04">
+            04 - the things I need
         </div>
 
         <p class="lead">
@@ -1060,8 +1254,8 @@ footer{
 <section class="reveal"
 style="max-width:820px;margin:auto;padding:120px 25px">
 
-    <div class="chapter">
-        04 — Why I need to
+    <div class="chapter" id="chapter-05">
+        05 — Why I need to
     </div>
 
     <h2>
@@ -1110,8 +1304,8 @@ style="max-width:820px;margin:auto;padding:120px 25px">
 <section class="reveal"
 style="max-width:820px;margin:auto;padding:30px 25px 130px">
 
-    <div class="chapter">
-        05 — For You
+    <div class="chapter" id="chapter-06">
+        06 — For You
     </div>
 
     <h2>
@@ -1202,7 +1396,7 @@ style="max-width:820px;margin:auto;padding:30px 25px 130px">
                 </span>
 
                 <div>
-                    <strong>The songs I want you to hear</strong>
+                    <strong>7 songs I want you to hear</strong>
                 </div>
 
                 <span class="link-arrow">
@@ -1243,6 +1437,177 @@ style="max-width:820px;margin:auto;padding:30px 25px 130px">
 
         </div>
 
+        <!-- SPOTIFY PLAYLIST -->
+
+<div class="playlist-wrap">
+
+    <div class="playlist-label">
+        7 songs I want you to hear
+    </div>
+
+    <iframe
+        style="border-radius:12px"
+        src="https://open.spotify.com/embed/playlist/5UOfkCmMEEWTgOGqidls2m?utm_source=generator&si=0a0a4fdf17da41b2"
+        width="100%"
+        height="352"
+        frameborder="0"
+        allowfullscreen=""
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy">
+    </iframe>
+
+</div>
+
+<!-- SONG EXPLANATIONS -->
+
+  <div class="chapter" id="chapter-07">
+        07 — The Soundtrack
+    </div>
+
+<div class="song-explanations">
+
+    <div class="songs-intro">
+        <h2>The Songs I Associate with You</h2>
+        <span>
+            I could've just left you the playlist,
+            but I wanted you to know why each of these songs
+            made me think of you or why I want you to hear it.
+        </span>
+    </div>
+
+    <div class="song-item" id="song-01">
+        <span class="song-number">01</span>
+        <div class="song-content">
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/5lYN6iWRzaWm08s0Fhw6eM?utm_source=generator&si=5c5ac2453f914487" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <span class="song-number">For the day you first became more than just an attraction.</span>
+            <h5>
+                I associate this song with you dahil listening to this song reminds me of how I felt for you the first time and days after that. There was always
+                this weird pull towards you na hindi ko maintindihan kung bakit. Bago pa tayo magkaroon ng something, parang I already knew that may kakaiba sa way on why
+                I was so drawn to to you.<br><br>
+
+                <i class="lead">"Each times I push the thoughts away, you keep pulling me in"</i>
+<br><br>
+                I tried to brush of how I felt, I really did 'cause may umaasa sa'kin that time, but I can't seem to get you out of my head. Parang I'll never be satisfied
+                hangga't 'di ka nagiging akin. Maybe that's why this song feels so us to me. There wasn't really a logical explanation for why I liked you as much as I did. I just did.
+            </h5>
+        </div>
+    </div>
+
+     <div class="song-item" id="song-02">
+        <span class="song-number">02</span>
+        <div class="song-content">
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/678uPSNnCXWwqCyvug69b4?utm_source=generator&si=de85043ac60b4c77" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <span class="song-number">For all the little signs I convinced myself meant something.</span>
+            <h5>
+                Itong kantang 'to, naka shuffle lang 'yung spotify ko then nung dumaan 'to, naalala kita sa beat palang. And nung napakinggan ko na 'yung lyrics,
+                it reminded me of all the moments when I was quietly hoping that whatever was happening between us would actually become something. 
+                I was always trying not to say too much, not to expect too much, not to get too excited because I was scared that somehow, saying it out loud would 
+                make me lose it. Gaya nalang nung nagkatagpo tayo sa IH sa Alpha, I really thought that time na gumagawa na ng paraan 'yung tadhana.<br><br>
+                <i class="lead">“Eyes closed, 11:11, Hoping you will stay”</i>
+                <br><br>
+                I think that's what I was doing for most of my time with you. Hoping you'd stay without ever really knowing if you would. Kada 11:11, I always wish na sana, ikaw na talaga.
+            </h5>
+        </div>
+    </div>
+
+     <div class="song-item" id="song-03">
+        <span class="song-number">03</span>
+        <div class="song-content">
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/4xO5JCVnPvYP2fLdlQLGgM?utm_source=generator&si=04bb26686faa4903" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <span class="song-number">For the version of me that kept trying to get it right.</span>
+            <h5>
+                This is my favorite love song of all time. I really love how it encaptures the very essence of love that I believe in. Wanting to do better for someone you love.
+                That no matter where your starting line is, your very goal is to try your best every single day.
+                <br><br>
+                <i class ="lead">"Never been the best at honesty, I know that you could never count on me. But if you give me half a chance I'll show, there's nothing 
+                    that I wouldn't do for you."
+                </i>
+                <br><br>
+                I know I wasn't always easy to deal with. Maraming times when my overthinking, my fear, and the way I handled things made everything heavier than it needed to be. That's something na aminado ako, and something I don't want to run away from.
+        But I genuinely wanted to be better. I wanted to learn from the things I did wrong, mas maintindihan ka, and become someone who could love you without making you feel like you had to constantly reassure me.
+        I know naman na trying doesn't automatically fix everything. Sometimes you can genuinely try your best and still not be the person someone chooses. But I want you to know that I did try, I might've failed but I genuinely loved you.
+    </h5>
+        </div>
+    </div>
+
+     <div class="song-item" id="song-04">
+        <span class="song-number">04</span>
+        <div class="song-content">
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/40fHWRL8bKcl5J4t4OKUiW?utm_source=generator&si=e7e678079fb34ec6" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <span class="song-number">For the parts of us that were beautiful and painful at the same time.</span>
+            <h5>
+                This song reminds me of what's recurring sa'ting dalawa. We could be so happy together, and then somehow we'd end up hurting each other again.
+                There were moments when everything felt so natural between us, and moments when it felt like we were constantly trying to figure out how to exist around each other's fears.
+                <br><br>
+                <i class="lead">"I'm in love with the pain, I never want to live without it."</i>
+                <br><br>
+                It captures that confusing place where you know something hurts you, but you still can't completely let go of it because there's still something beautiful underneath all the mess.
+             Pero I don't think everything between us was painful. Kaya siguro sobrang hirap basta nalang pakawalan. If it had all been bad, maybe leaving would have been easier.
+            </h5>
+        </div>
+    </div>
+
+     <div class="song-item" id="song-05">
+        <span class="song-number">05</span>
+        <div class="song-content">
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/1b6l3C0O4BGe0SivPwfoRH?utm_source=generator&si=633fdbc53d214907" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <span class="song-number">For the fears we never quite knew how to overcome.</span>
+            <h5>
+                Ito 'yung pinakamahiran na i-explain out of all these songs because I feel like it understands the things we couldn't always say to each other.
+                I think we both carried our own fears into what we had. I was scared of being abandoned, while it felt like you were scared of being fully seen or letting someone get too close. And somewhere in between those two fears, we found each other.
+                <br><br>
+                <i class="lead">"If I could do one thing over again, I would be less of a lover to you and more of a friend. I would've gotten in my head that it's not about me.
+                    While I was scared of being left, you were scared of being seen."
+                </i>
+                <br><br>
+                The moments na nagkasakitan tayong dalawa, none of them was intentional. Maybe we were just two people trying to love each other while carrying baggages we hadn't completely figured out yet.
+                Kaya ito rin 'yung pinakamasakit out of all these songs, because everytime I hear it, it'll always remind me how the two of us failed into loving each other.
+            </h5>
+        </div>
+    </div>
+
+     <div class="song-item" id="song-06">
+        <span class="song-number">06</span>
+        <div class="song-content">
+           <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/72VqV4npagRqF9ZLnOXfaP?utm_source=generator&si=6fdd2c4cb3624164" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <span class="song-number">For the ordinary life I secretly wished we could have had.</span>
+            <h5>
+                This song naman is for the life that I wanted to have shared with you. Not something complicated. Not something we constantly had to figure out. Just us being together, doing ordinary things, making stupid memories, going somewhere randomly, watching movies, eating together, falling asleep beside each other.
+                May mga pagkakataon naman na nangyari sa'tin 'to, The bus ride home. Walking together. Holding your hand. You sleeping beside me. Being at your place. Moments na lagi kong itetreasure.    
+                <i class="lead">"Yeah, we're damaged. Badly damaged. But your love's too good to lose. Hold me tighter, even closer, I'll stay if I'm what you choose."
+                </i>
+                <br><br>
+                This song also reminds me that there's nothing too painful for love, that it conquers all. Na no matter how painful it is, you'll always try to fight for it
+                just so you don't lose it. This is the song that I always play everytime na magkakaroon tayo ng arguments, kasi away lang naman 'yon, lilipas din, but losing you is something that I don't wanna happen.
+            </h5>
+        </div>
+    </div>
+
+    <div class="song-item" id="song-07">
+        <span class="song-number">07</span>
+        <div class="song-content">
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/4PdLaGZubp4lghChqp8erB?utm_source=generator&si=ce43fd11a3524407" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+             <span class="song-number">For knowing you, and having to learn how to let you go.</span>
+            <h5>
+                This one feels like the song I'd leave for you now that everything is already over. I don't know why pero I had always associated this song with you, even before pa tayo maging close.
+                You became someone I'm always curious about. Na para bang isang course 'yung life mo na gusto kong i-take. I might've not known you deeper, but I'm confident that I know every part of you that you chose to share with me, I remember it all.
+                
+                <br><br><i class="lead">"Who else decodes you?"</i>
+                <br><br>
+                And maybe that's why it hurts to say goodbye. I'll become someone who won't know what you're doing anymore.
+                I won't know what made you happy on a certain day. I won't know what game you're playing. I won't know who you're with. I won't know what you're listening to. 
+                I won't know when you're asleep. Kailangan ko nang tanggapin that someone I once loved is going to become a stranger again. And someday, someone will take that place  from me.
+                Someone's gonna decode you a lot better than I did.
+                And maybe that's what this whole playlist is for.
+Not to make you come back.
+Not to make you feel guilty.
+Just so that, for one last time, you can hear the songs that made me think of you. And that I always wish for your happiness.
+            </h5>
+        </div>
+    </div>
+
+</div>
+
 
         <!-- FINAL MESSAGE -->
 
@@ -1274,6 +1639,78 @@ style="max-width:820px;margin:auto;padding:30px 25px 130px">
         </small>
 
     </div>
+
+    <!-- =========================
+     FINAL INDEX
+========================= -->
+
+<div class="final-index">
+
+    <div class="index-heading">
+        if you ever want to look back, just click (working lahat except sa message 3 kaya wag mo na iclick, super antok na ko kaya di ko na dinebug)
+    </div>
+
+    <div class="index-table">
+ 
+        <div class="index-row index-header">
+            <span>Numbers</span>
+            <span>Message</span>
+            <span>Song</span>
+            <span>Memory</span>
+        </div>
+
+        <div class="index-row">
+            <span>01</span>
+            <a href="#chapter-01">Only if it were Up to Me</a>
+            <a href="#song-01">Magnets by NIKI</a>
+            <a href="#memory-01">Where My Hope Began</a>
+        </div>
+
+        <div class="index-row">
+            <span>02</span>
+            <a href="#chapter-02">The Moments I Regret</a>
+            <a href="#song-02">Jinx by DNCE</a>
+            <a href="#memory-02">A Seat Beside You</a>
+        </div>
+
+        <div class="index-row">
+            <span>03</span>
+            <a href="chapter-03">The Memories I Love</a>
+            <a href="#song-03">Try by Simple Plan</a>
+            <a href="#memory-03">A Little Piece of Us</a>
+        </div>
+
+        <div class="index-row">
+            <span>04</span>
+            <a href="#chapter-04">The Things I Need</a>
+            <a href="#song-04">Why Try by Ariana Grande</a>
+            <a href="#memory-04">Stolen Moments</a>
+        </div>
+
+        <div class="index-row">
+            <span>05</span>
+            <a href="#chapter-05">Why I Need To</a>
+            <a href="#song-05">House that Always Rains by Conan Gray</a>
+            <a href="#memory-05">Before the High</a>
+        </div>
+
+        <div class="index-row">
+            <span>06</span>
+            <a href="#chapter-06">For You</a>
+            <a href="#song-06">Seventeen from Heathers the Musical</a>
+            <a href="#memory-06">Your Kind of Happiness</a>
+        </div>
+
+        <div class="index-row">
+            <span>07</span>
+            <a href="#chapter-07">The Soundtrack</a>
+            <a href="#song-07">The Tortured Poets Department by Taylor Swift</a>
+            <a href="#memory-07">Three Little Words</a>
+        </div>
+
+    </div>
+
+</div>
 
 </section>
 
@@ -1402,6 +1839,11 @@ new IntersectionObserver(es=>{
                     ()=>e.classList.add("show"),
                     +e.dataset.delay
                 );
+                
+
+                setTimeout(() => {
+    document.querySelector(".playlist-wrap").classList.add("show");
+}, 1500);
 
             });
 
