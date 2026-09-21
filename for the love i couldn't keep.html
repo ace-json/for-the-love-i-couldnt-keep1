@@ -1,0 +1,1422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For the love I Couldn't Keep</title>
+<link rel="icon" type="image/png" href="phrolova.jpg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400&display=swap');
+
+:root{
+    --bg:#0b0b0b;
+    --fg:#eee9e1;
+    --muted:#99938c;
+    --line:#272523;
+    --serif:"Cormorant Garamond",Georgia,serif;
+    --sans:"DM Sans",Arial,sans-serif
+}
+
+*{box-sizing:border-box}
+
+html{
+    scroll-behavior:smooth
+}
+
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font:300 16px/1.85 var(--sans)
+}
+
+::selection{
+    background:#54483f;
+    color:white
+}
+
+.progress{
+    position:fixed;
+    top:0;
+    left:0;
+    height:2px;
+    background:#d5c0ae;
+    width:0;
+    z-index:20
+}
+
+/* MUSIC */
+
+.music-indicator{
+    position:fixed;
+    right:20px;
+    top:20px;
+    z-index:30;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 13px;
+    border:1px solid #272523;
+    border-radius:30px;
+    background:#0b0b0bcc;
+    backdrop-filter:blur(8px);
+    color:#777;
+    font-size:.55rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    opacity:0;
+    transition:.6s;
+}
+
+.music-indicator.active{
+    opacity:1;
+}
+
+.music-dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#b59d88;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{opacity:.35}
+    50%{opacity:1}
+}
+
+/* COVER */
+
+.cover{
+    min-height:100svh;
+    display:grid;
+    place-items:center;
+    text-align:center;
+    padding:30px;
+    position:relative;
+    overflow:hidden
+}
+
+.cover:before{
+    content:"";
+    position:absolute;
+    width:80vw;
+    height:80vw;
+    border-radius:50%;
+    background:radial-gradient(circle,#c9b29d12,transparent 68%);
+    filter:blur(15px);
+    animation:float 10s ease-in-out infinite
+}
+
+.cover>div{
+    position:relative;
+    z-index:1
+}
+
+.small,.chapter{
+    font-size:.62rem;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--muted)
+}
+
+h1{
+    font:400 clamp(3.1rem,10vw,8rem)/.86 var(--serif);
+    margin:32px 0
+}
+
+h1 em,h2 em{
+    font-style:italic
+}
+
+.cover p{
+    max-width:500px;
+    margin:auto;
+    color:var(--muted);
+    font-size:.9rem
+}
+
+.open{
+    margin-top:45px;
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--fg);
+    padding:14px 24px;
+    border-radius:30px;
+    text-transform:uppercase;
+    letter-spacing:.13em;
+    font-size:.65rem;
+    cursor:pointer;
+    transition:.3s
+}
+
+.open:hover{
+    background:var(--fg);
+    color:#111
+}
+
+.scroll{
+    position:absolute;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:.55rem;
+    letter-spacing:.2em;
+    color:#555;
+    text-transform:uppercase
+}
+
+/* MAIN */
+
+main{
+    max-width:820px;
+    margin:auto;
+    padding:0 25px
+}
+
+section{
+    padding:125px 0
+}
+
+.chapter{
+    margin-bottom:28px
+}
+
+h2{
+    font:400 clamp(2.3rem,7vw,4.5rem)/1 var(--serif);
+    margin:0 0 40px
+}
+
+p{
+    color:#d8d3cc;
+    margin:0 0 24px
+}
+
+.lead{
+    font:italic 400 clamp(1.35rem,4vw,1.8rem)/1.5 var(--serif);
+    color:var(--fg)
+}
+
+.quote{
+    border-left:1px solid #b59d88;
+    padding-left:24px;
+    margin:48px 0;
+    font:italic 400 1.5rem/1.5 var(--serif);
+    color:#d7c1ae
+}
+
+.divider{
+    width:42px;
+    height:1px;
+    background:var(--line);
+    margin:auto
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(25px);
+    transition:1s
+}
+
+.reveal.show{
+    opacity:1;
+    transform:none
+}
+
+/* MEMORIES */
+
+.memories{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:80px;
+    margin:70px 0
+}
+
+.memory{
+    background:#e6dfd5;
+    color:#222;
+    padding:12px 12px 35px;
+    box-shadow:0 15px 35px #0008;
+}
+
+.photo{
+    width:100%;
+    aspect-ratio:16/10;
+    background:#cfc7bd;
+    display:grid;
+    place-items:center;
+    color:#777;
+    font-size:.6rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    overflow:hidden
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover
+}
+
+.memory-content{
+    padding:30px 22px 5px
+}
+
+.memory-number{
+    font-size:.55rem;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:#888;
+    margin-bottom:12px
+}
+
+.memory h3{
+    font:400 2rem/1.1 var(--serif);
+    margin:0 0 22px;
+    color:#191715
+}
+
+.memory p{
+    color:#393531;
+    font-size:.95rem;
+    line-height:1.8;
+    margin-bottom:18px
+}
+
+.caption{
+    font:italic 400 1rem var(--serif);
+    text-align:center;
+    padding-top:22px;
+    color:#444
+}
+
+/* LETTER */
+
+.letter{
+    background:#eee9e1;
+    color:#1a1816;
+    padding:65px clamp(28px,7vw,75px);
+    margin:50px auto;
+    position:relative
+}
+
+.letter:before{
+    content:"";
+    position:absolute;
+    inset:13px;
+    border:1px solid #2222
+}
+
+.letter p{
+    color:#292623
+}
+
+.letter .lead{
+    color:#151311
+}
+
+.letter-head{
+    font-size:.58rem;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:#777;
+    margin-bottom:50px
+}
+
+.signature{
+    font:italic 400 1.5rem var(--serif);
+    margin-top:45px
+}
+
+/* BLACKOUT */
+
+.blackout,.final{
+    min-height:100svh;
+    background:#050505;
+    display:grid;
+    place-items:center;
+    text-align:center;
+    padding:40px 25px
+}
+
+.blackout .inner,.final .inner{
+    max-width:720px
+}
+
+.fade-line,.final p{
+    font:400 clamp(2rem,7vw,4.4rem)/1.2 var(--serif);
+    opacity:0;
+    transform:translateY(15px);
+    transition:1.4s
+}
+
+.fade-line.show,.final p.show{
+    opacity:1;
+    transform:none
+}
+
+.final .goodbye{
+    font-size:clamp(3rem,9vw,7rem);
+    margin-top:70px;
+    font-style:italic
+}
+
+.final small{
+    opacity:0;
+    color:#555;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    font-size:.58rem;
+    transition:2s
+}
+
+.final small.show{
+    opacity:1
+}
+
+/* =========================
+   FINAL LINKS
+========================= */
+
+/* =========================
+   FINAL LINKS
+========================= */
+
+.final-links{
+    width:100%;
+    max-width:700px;
+    margin:70px auto 100px;
+    border-top:1px solid var(--line);
+}
+
+.final-links-label{
+    margin:70px auto 25px;
+    color:var(--muted);
+    font-size:.6rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    text-align:center;
+}
+
+.final-link{
+    display:grid;
+    grid-template-columns:45px 38px 1fr 30px;
+    align-items:center;
+    gap:15px;
+
+    padding:28px 0;
+
+    border-bottom:1px solid var(--line);
+
+    color:var(--fg);
+    text-decoration:none;
+
+    transition:opacity .3s ease, padding-left .3s ease;
+}
+
+.final-link:hover{
+    opacity:.65;
+    padding-left:10px;
+}
+
+.link-number{
+    font-family:var(--sans);
+    font-size:.7rem;
+    letter-spacing:.15em;
+    color:var(--muted);
+}
+
+.link-icon{
+    width:24px;
+    height:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.link-icon svg{
+    width:22px;
+    height:22px;
+    fill:currentColor;
+}
+
+.spotify-icon{
+    color:#d8d3cc;
+}
+
+.drive-icon{
+    color:#d8d3cc;
+}
+
+.final-link div{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.final-link strong{
+    font-family:var(--serif);
+    font-size:1.5rem;
+    font-weight:400;
+    color:var(--fg);
+}
+
+.final-link small{
+    font-family:var(--sans);
+    font-size:.7rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+}
+
+.link-arrow{
+    font-family:var(--sans);
+    font-size:1rem;
+    color:var(--muted);
+    text-align:right;
+}
+
+footer{
+    text-align:center;
+    background:#050505;
+    color:#444;
+    padding:28px;
+    font-size:.55rem;
+    letter-spacing:.18em;
+    text-transform:uppercase
+}
+
+@keyframes float{
+    0%,100%{transform:translate(-2%,-2%)}
+    50%{transform:translate(2%,2%)}
+}
+
+@media(max-width:600px){
+
+    section{
+        padding:95px 0
+    }
+
+    .memories{
+        gap:60px
+    }
+
+    .memory-content{
+        padding:25px 16px 5px
+    }
+
+    .letter{
+        padding:55px 27px
+    }
+
+    .music-indicator{
+        top:12px;
+        right:12px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    *{
+        animation:none!important;
+        transition:none!important
+    }
+
+    .reveal,
+    .fade-line,
+    .final p,
+    .final small{
+        opacity:1;
+        transform:none
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="backgroundMusic" loop preload="auto">
+    <source src="last-kiss.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-indicator" id="musicIndicator">
+    <span class="music-dot"></span>
+    <span>Last Kiss</span>
+</div>
+
+<div class="progress" id="progress"></div>
+
+<!-- COVER -->
+
+<header class="cover" id="top">
+    <div>
+
+        <div class="small">One last letter for you</div>
+
+        <h1>
+            For the Love<br>
+            <em>I Couldn't Keep.</em>
+        </h1>
+
+        <p>
+            I don't know if mayroong perfect way para magpaalam sa taong mahal
+            mo pa rin. So I'm going to say nalang lahat ng nararamdaman ko so that I can move forward without having any unsaid feelings.
+        </p>
+
+        <button class="open" id="beginButton">
+            begin
+        </button>
+
+    </div>
+
+    <div class="scroll">
+        take your time
+    </div>
+</header>
+
+
+<main id="story">
+
+<!-- 01 -->
+
+<section class="reveal">
+
+    <div class="chapter">
+        01 — Only if it were up to me
+    </div>
+
+    <h2>
+        I would've stayed.
+    </h2>
+
+    <p class="lead">
+        Zed, I just want you to know na willing akong gawin lahat just so I could keep you
+        in my life and love you the way you deserved to be loved.
+    </p>
+
+    <p>
+      Sinasabi ko 'yan not because I want you to change
+        your mind, but because I don't want us to end with me being unable to express my love for you.
+    </p>
+
+    <p>
+        I love you. I still do. And kung ako lang sana 'yong masusunod,
+        I would still choose you.
+    </p>
+
+    <div class="quote">
+        “I would choose you. But I can't choose for you.”
+    </div>
+
+    <p>
+        Alam kong minahal mo rin ako, for a brief moment, naramdaman ko 'yon.
+        But you can love me, and want me, and still not want a life with me, you're allowed.
+        I have to respect that. I don't have the right to take
+        that choice away from you just because it breaks my heart.
+    </p>
+
+</section>
+
+<div class="divider"></div>
+
+
+<!-- 02 -->
+
+<section class="reveal">
+
+    <div class="chapter">
+        02 — The moments I regret
+    </div>
+
+    <h2>
+        I'm sorry.
+    </h2>
+
+    <p>
+        I'm sorry for all the inconveniences na binigay ko sa'yo, I'm sorry for the
+        moments when I became difficult to understand, for the
+        times I spiraled, overthought, needed reassurance, or let
+        my mind speak louder than my heart.
+    </p>
+
+    <p>
+        But please know that none of it came from a place of hate. Never kong ginustong
+        saktan or pahirapan ka. Sometimes I just loved you so much that I didn't
+        know what to do with everything I was feeling. The fear of losing you crept in to my mind
+        every single time and I felt powerless to stop it.
+    </p>
+
+    <p>
+        That doesn't erase the inconveniences na dinala ko sa'yo. I'm not asking you
+        to excuse me. I just hope that someday you'll understand
+        where it came from.
+    </p>
+
+    <div class="quote">
+        I was never trying to make your life harder.
+        I was trying, sometimes badly, not to lose you.
+    </div>
+
+</section>
+
+<div class="divider"></div>
+
+
+<!-- 03 MEMORIES -->
+
+<section class="reveal">
+
+    <div class="chapter">
+        03 — The Memories I Love
+    </div>
+
+    <h2>
+        I'll treasure everything.
+    </h2>
+
+    <p class="lead">
+        I don't want the ending to rewrite everything
+        that came before it. Just because it didn't work doesn't mean it's
+        meaningless to me, it just wasn't meant to be.
+    </p>
+
+    <p>
+        These are six memories that I keep coming back to.
+        Maybe they're ordinary moments to you now, or something na nakalimutan mo na, but they
+        carry a lot of sentimental value for me.
+    </p>
+
+
+    <div class="memories">
+
+        <!-- MEMORY 1 -->
+
+        <article class="memory">
+
+            <div class="photo">
+                <img src="memory1.jpg"
+                     alt="Memory 1"
+                     onerror="this.style.display='none'">
+                <span>memory 1</span>
+            </div>
+
+            <div class="memory-content">
+
+                <div class="memory-number">
+                    July 02, 2026
+                </div>
+
+                <h3>
+                    Where My Hope Began
+                </h3>
+
+                <p>
+                    Super saya ko nung time na inaya mo 'ko mag pickleball.
+                    Gusto na kita prior to this, well nabanggit ko naman sa'yo na
+                    nung unang IH palang na nakita kita, alam kong 'di lang basta attraction
+                    'yung meron ako sa'yo. So I was really happy when you invited me kasi I can bond
+                    with you outside of IH, outside of sex.
+                </p>
+
+                <p>
+                    Nainis ako nung time na 'to kasi sobrang tagal bago tayo maging magpartner
+                    considering na na-late ka kaya pinaltan ka muna sa game na partners dapat tayo supposedly.
+                    Kaya I took it upon myself na gawan ng paraan kaya kinausap ko 'yung organizers na ipagpair
+                    tayo sa mga upcoming games. And nangyari naman, kaya nung 1st game na kalaban kita, inasar asar kita but then
+                    try to made up for it by giving you words of encouragement naman sa 2nd game na magkasapi na tayo, I wasn't aware
+                    pa that time na mabilis ka mapikon. And 'yung paglalakad natin nung gabi is what made it really special to me, 'cause
+                    I got to know you more. And that day is what made me think that I had a chance sa'yo.
+                </p>
+
+                <div class="caption">
+                    where something began to feel possible
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- MEMORY 2 -->
+
+        <article class="memory">
+
+            <div class="photo">
+                <img src="memory2.jpg"
+                     alt="Memory 2"
+                     onerror="this.style.display='none'">
+                <span>memory 2</span>
+            </div>
+
+            <div class="memory-content">
+
+                <div class="memory-number">
+                    July 19, 2026
+                </div>
+
+                <h3>
+                    A Seat Beside You
+                </h3>
+
+                <p>
+                    This was the first time na inaya mo 'ko to bond together with your friends.
+                    Sobrang saya ko that time kasi I was able to show you na gustong gusto talaga kita.
+                    Nung pinagsandok mo 'ko ng food, nung nagiging sweet ka despite your friends seeing, something
+                    na 'di ka comfortable kila Japes, nung hinayaan mo 'kong nakadikit lang sa'yo the whole time, I
+                    felt really considered and loved. We might not share the same feelings pa that time, but regardless of that,
+                    I appreciate everything that you did that time.
+                </p>
+
+                <p>
+                    Nasundan 'yon ng pag-uwi natin sa inyo. The first time na dinala mo 'ko sa inyo. The bus
+                    ride home is what really made it memorable for me. Seeing how cute you are habang naglilipsync habang tulog,
+                    I wish I could freeze that moment and just stare at you the whole time, I think I could live with that.
+                </p>
+
+                <div class="caption">
+                    the night you let me a little closer
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- MEMORY 3 -->
+
+        <article class="memory">
+
+            <div class="photo">
+                <img src="memory3.jpg"
+                     alt="Memory 3"
+                     onerror="this.style.display='none'">
+                <span>memory 3</span>
+            </div>
+
+            <div class="memory-content">
+
+                <div class="memory-number">
+                    August 7, 2026
+                </div>
+
+                <h3>
+                    A Little Piece of Us
+                </h3>
+
+                <p>
+                    This was the time na nag Oldmoon tayo. Hindi tayo napagbigyan sa
+                    first attempt natin, kaya grabe 'yung excitement ko nung matutuloy na siya.
+                    Sobrang pinahahalagahan ko 'yung moment na 'to kasi I I really love photobooths, lalo
+                    na sa mga taong mahal ko.
+                </p>
+
+                <p>
+                    I wanted us to be sweet sa pictures, pero I'm well aware naman na that's
+                    something na you're not comfortable with and naiintindihan ko 'yon. Sobrang laking
+                    bagay na sa'kin na pinagbigyan mo 'kong gawin siya with you.
+                </p>
+
+                <div class="caption">
+                    a picture i don't wish to burn
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- MEMORY 4 -->
+
+        <article class="memory">
+
+            <div class="photo">
+                <img src="memory4.jpg"
+                     alt="Memory 4"
+                     onerror="this.style.display='none'">
+                <span>memory 4</span>
+            </div>
+
+            <div class="memory-content">
+
+                <div class="memory-number">
+                    August 14, 2026
+                </div>
+
+                <h3>
+                    Before the High
+                </h3>
+
+                <p>
+                    We decided na sabay na tayong bumyahe pa Manila para sa Raw.
+                    It's gonna be an inconvenience for both of us, pero we both didn't
+                    care, because what mattered is that magkasabay tayo. Honestly super tense
+                    nung mga nangyari bago tayo magkita, I know na pareho tayong inis, overwhelmed,
+                    and overstimulated na dahil sa mga aberyang nangyari, pero I could never forget
+                    how you shifted from irritated to caring when we saw each other, because it's no
+                    one's fault naman in the first place.
+                </p>
+
+                <p>
+                    I was also able to hold your hand habang bumabyahe tayo. Hindi tayo gaanong
+                    nag-usap, but the fact na kasabay kita, katabi kita, and I get to hold your hand bago tayo mag part ways
+                    para pumunta ng raw that time made it really memorable for me.
+                </p>
+
+                <div class="caption">
+                    a hand I didn't want to let go of
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- MEMORY 5 -->
+
+        <article class="memory">
+
+            <div class="photo">
+                <img src="memory5.jpg"
+                     alt="Memory 5"
+                     onerror="this.style.display='none'">
+                <span>memory 5</span>
+            </div>
+
+            <div class="memory-content">
+
+                <div class="memory-number">
+                    August 20, 2026
+                </div>
+
+                <h3>
+                    Your Kind of Happiness
+                </h3>
+
+                <p>
+                    This was the first time na nakita kitang sobrang saya. Ito 'yung time
+                    na nakuha mo agad si Qingxiao and 'yung weapon niya.
+                    It's one of the moments wherein nalaman ko 'yung mga
+                    bagay na nagmamatter or nagpapasaya sa'yo. Seeing you happy
+                    was really priceless, and I'm really glad na nawitness ko 'yung
+                    happiness mo na 'yon. 
+                </p>
+
+                <p>
+                    I wanted to understand you more, that's why after that moment,
+                    after kitang makitang sobrang saya, naisipan kong magdownload din ng
+                    Wuthering Waves. Seeing the way it makes you happy made me curious about it.
+                    I had to delete my League pa to make space for that, but I don't regret it, because
+                    while playing, all I could think about is you, kaya naeenjoy ko, I felt connected. 
+                </p>
+
+                <div class="caption">
+                    because your happiness mattered to me
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- MEMORY 6 -->
+
+        <article class="memory">
+
+            <div class="photo">
+                <img src="memory6.jpg"
+                     alt="Memory 6"
+                     onerror="this.style.display='none'">
+                <span>memory 6</span>
+            </div>
+
+            <div class="memory-content">
+
+                <div class="memory-number">
+                    September 13, 2026
+                </div>
+
+                <h3>
+                    Three Little Words
+                </h3>
+
+                <p>
+                    I feel happy that time kasi though nasa inuman ka, my mind didn't spiral.
+                    'Di ako nag-isip ng kung ano ano and I'm just letting you enjoy the party.
+                    I really appreciate din na nag-uupdate ka that time, kasi it lessened my overthinking thoughts.
+                    Pero when you sent that picture, medyo nakaramdam na ako na start na 'yon na baka magpassout ka.
+                    And gano'n nga 'yung nangyari kaya nag worry ako.
+                </p>
+
+                <p>
+                    That's why I called. And sobrang relief sa'kin nung nalaman kong okay ka lang. 
+                    That was just my intention, to know that you're safe. Little did I know na upon saying goodbye,
+                    sasabihin mo 'yung words na 'yon for the first time. Sobrang saya ko that time, kasi I thought "this is finally it".
+                    I know na I didn't say it back, kasi you're drunk and baka effect lang 'yon ng alak, but still, it made me genuinely happy.
+                    It's such a shame that days after that, I lost you.
+                </p>
+
+                <div class="caption">
+                    what i hoped to hear
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <p>
+        I treasured every moment we had—the good, the bad, the quiet,
+        the messy, and everything in between.
+    </p>
+
+    <p>
+        I appreciate every effort you gave to what we have,
+        even the things na 'di ko man napakita 'yung appreciation ko, all of it mattered to me.
+    </p>
+
+</section>
+
+
+<!-- LETTER -->
+
+<section class="reveal">
+
+    <div class="letter">
+
+        <div class="letter-head">
+            the things I needed to say
+        </div>
+
+        <p class="lead">
+            I don't want to rush into another love just because
+            yours is gone.
+        </p>
+
+        <p>
+            I'm not closing my doors to anyone. Naniniwala pa rin ako that
+            someday I'll find love again. I believe there is still
+            a life ahead of me that I haven't seen yet.
+        </p>
+
+        <p>
+            But right now, I want to let myself grieve the love that
+            we lost. I want to sit with it instead of immediately
+            jumping from one man to another. I'll focus muna on myself, to
+            heal, to become okay with my own company, and to figure
+            out who I am when I'm not trying to hold on to someone.
+        </p>
+
+        <p>
+            I don't know how long that will take. And I don't need
+            to know.
+        </p>
+
+        <div class="quote">
+            I'm not moving on because I stopped loving you. I still do.
+            But I have to move forward because we both made our choices na.
+        </div>
+
+        <div class="signature">
+            And I don't hate you for choosing what you think is best for you.
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- BLOCKING -->
+
+<section class="blackout" id="block">
+
+    <div class="inner">
+
+        <p class="fade-line">
+            I'm blocking you.
+        </p>
+
+        <p class="fade-line">
+            Not because I hate you.
+        </p>
+
+        <p class="fade-line">
+            I wish I did.
+        </p>
+
+        <p class="fade-line">
+            It would be so much easier.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- WHY -->
+
+<section class="reveal"
+style="max-width:820px;margin:auto;padding:120px 25px">
+
+    <div class="chapter">
+        04 — Why I need to
+    </div>
+
+    <h2>
+        Kilala ko sarili ko.
+    </h2>
+
+    <p>
+        I know na I'll spend hours looking for the perfect repost, notes
+        or story that might have changed your mind.
+    </p>
+
+    <p>
+        I'll constantly check your socials to see if may bago ka na ba. I'll wonder if you changed your mind.
+        I'll look for tiny signs that maybe you still think
+        about me.
+    </p>
+
+    <p>
+        And kada gagawin ko 'yon, I'll be putting myself back
+        at the beginning.
+    </p>
+
+    <div class="quote">
+        So blocking you isn't punishment. It isn't anger.
+        It's me choosing peace.
+    </div>
+
+    <p>
+        I need to stop watching from a distance and hoping
+        for something that you may never want again.
+        I need to give myself the space to actually heal. I can't
+        watch your life in pictures like I used to watch you sleep.
+    </p>
+
+    <p>
+        Please don't take the block as hate.
+        I could never make myself hate you just to make
+        leaving easier.
+    </p>
+
+</section>
+
+
+<!-- FOR ZED -->
+
+<section class="reveal"
+style="max-width:820px;margin:auto;padding:30px 25px 130px">
+
+    <div class="chapter">
+        05 — For You
+    </div>
+
+    <h2>
+        I hope you find it.
+    </h2>
+
+    <p class="lead">
+        The kind of love that feels worth fighting for.
+    </p>
+
+    <p>
+        I hope someday makahanap ka ng someone you genuinely believe
+        is worth fighting for, and someone who believes you're
+        worth fighting for too. Someone who's gonna make changing for the better
+        feel natural rather than forced. And someone who's willing to be changed too. It's not your fault na hindi ako 'yung taong 'yon,
+        and I don't hate you for it.
+    </p>
+
+    <p>
+        I hope they understand you. I hope they make you feel safe.
+        I hope they choose you without you having to wonder
+        whether they will.
+    </p>
+
+    <p>
+        I hope you get the life you want. I hope you accomplish
+        the things you dream about. I hope makapagtravel ka pa sa mga lugar na gusto mong puntahan.
+        I hope you win in life, kahit pa hindi na ako part non.
+    </p>
+
+</section>
+
+
+<!-- FINAL -->
+
+<!-- FINAL -->
+
+<section class="final" id="goodbye">
+
+    <div class="inner">
+
+        <p data-delay="0">
+            I hope you win in life.
+        </p>
+
+        <p data-delay="0">
+            I hope life is kind to you.
+        </p>
+
+        <p data-delay="0">
+            I hope you're loved well.
+        </p>
+
+        <div class="final-links-label">
+    And before I move on, there are two things I wanted to leave with you
+</div>
+
+
+        <!-- FINAL LINKS -->
+
+        <div class="final-links">
+
+            <!-- SPOTIFY -->
+
+            <a href="https://open.spotify.com/playlist/5UOfkCmMEEWTgOGqidls2m?si=26e4224b75704b58"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="final-link">
+
+                <span class="link-number">
+                    01
+                </span>
+
+                <span class="link-icon spotify-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
+                        10-4.48 10-10S17.52 2 12 2zm4.59 14.12c-.19.29-.58.38-.87.19
+                        -2.39-1.46-5.4-1.79-8.95-.98-.33.08-.67-.13-.75-.46
+                        -.08-.33.13-.67.46-.75 3.88-.89 7.21-.53 9.91 1.12
+                        .3.19.39.58.2.88zm1.17-2.6c-.24.36-.72.47-1.08.24
+                        -2.74-1.68-6.91-2.17-10.15-1.18-.41.12-.84-.11-.96-.52
+                        -.12-.41.11-.84.52-.96 3.7-1.12 8.31-.58 11.45 1.35
+                        .35.22.46.71.22 1.07zm.1-2.71C14.57 8.9 8.54 8.7 5.06 9.76
+                        c-.5.15-1.03-.13-1.18-.63-.15-.5.13-1.03.63-1.18
+                        4-1.21 10.65-.97 14.7 1.43.45.27.59.85.32 1.3
+                        -.27.44-.85.58-1.3.31z"/>
+                    </svg>
+                </span>
+
+                <div>
+                    <strong>The songs I want you to hear</strong>
+                </div>
+
+                <span class="link-arrow">
+                    ↗
+                </span>
+
+            </a>
+
+
+            <!-- GOOGLE DRIVE -->
+
+            <a href="https://drive.google.com/drive/folders/1Pv-h069E7RjoCqdVLkFgR6FWkUYTFREd?usp=drive_link"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="final-link">
+
+                <span class="link-number">
+                    02
+                </span>
+
+                <span class="link-icon drive-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M7.2 3h4.1l6.9 12h-4.1L7.2 3z"/>
+                        <path d="M4.3 15l-2.1 3.6C1.8 19.3 2.3 20 3.1 20h8.1l2.1-3.6H4.3z"/>
+                        <path d="M16.1 15l2.1 3.6c.4.7-.1 1.4-.9 1.4h-4.1l-2.1-3.6 5-1.4z"/>
+                    </svg>
+                </span>
+
+                <div>
+                    <strong>Everything we left behind</strong>
+                </div>
+
+                <span class="link-arrow">
+                    ↗
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- FINAL MESSAGE -->
+
+        <p class="fade-line" data-delay="3000">
+            I hope you know that, for a while,
+            you were deeply loved by me.
+        </p>
+
+        <p class="fade-line" data-delay="4000">
+            And for the last time, I hope I
+            was able to show just how much you meant to me.
+        </p>
+
+        <p class="fade-line" data-delay="5000">
+            I love you, Zed! <em>Goodbye.</em>
+        </p>
+
+
+        <!-- LAST PHOTO -->
+
+        <div class="photo goodbye-photo">
+            <img src="goodbye.jpg" alt="One last memory">
+            <span>one last picture</span>
+        </div>
+
+
+        <small id="endnote">
+            thank you for everything.
+        </small>
+
+    </div>
+
+</section>
+
+
+<footer>
+    just because it didn't work doesn't mean it's meaningless to me, it just wasn't meant to be.
+</footer>
+
+
+<script>
+
+/* =========================
+   BACKGROUND MUSIC
+========================= */
+
+const music = document.getElementById("backgroundMusic");
+const beginButton = document.getElementById("beginButton");
+const musicIndicator = document.getElementById("musicIndicator");
+
+beginButton.addEventListener("click", function(){
+
+    music.volume = 1.00;
+
+    music.play()
+        .then(() => {
+            musicIndicator.classList.add("active");
+        })
+        .catch(error => {
+            console.log("Music could not start:", error);
+        });
+
+    document.getElementById("story").scrollIntoView({
+        behavior:"smooth"
+    });
+
+});
+
+
+/* =========================
+   RESTART MUSIC IF NEEDED
+========================= */
+
+music.addEventListener("play", function(){
+    musicIndicator.classList.add("active");
+});
+
+
+/* =========================
+   SCROLL PROGRESS
+========================= */
+
+addEventListener("scroll",()=>{
+
+    let m=document.documentElement.scrollHeight-innerHeight;
+
+    if(m>0){
+        progress.style.width=(scrollY/m*100)+"%";
+    }
+
+});
+
+
+/* =========================
+   GENERAL REVEAL
+========================= */
+
+const ro=new IntersectionObserver(
+    es=>es.forEach(e=>
+        e.isIntersecting &&
+        e.target.classList.add("show")
+    ),
+    {threshold:0.01}
+);
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(e=>ro.observe(e));
+
+
+/* =========================
+   BLOCKING SECTION
+========================= */
+
+let b=false;
+
+new IntersectionObserver(es=>{
+
+    if(es[0].isIntersecting && !b){
+
+        b=true;
+
+        document
+            .querySelectorAll(".fade-line")
+            .forEach(e=>{
+
+                setTimeout(
+                    ()=>e.classList.add("show"),
+                    +e.dataset.delay
+                );
+
+            });
+
+    }
+
+},{threshold:.35})
+.observe(document.getElementById("block"));
+
+
+/* =========================
+   FINAL SECTION
+========================= */
+
+let f=false;
+
+new IntersectionObserver(es=>{
+
+    if(es[0].isIntersecting && !f){
+
+        f=true;
+
+        document
+            .querySelectorAll(".final p")
+            .forEach(e=>{
+
+                setTimeout(
+                    ()=>e.classList.add("show"),
+                    +e.dataset.delay
+                );
+
+            });
+
+        setTimeout(
+            ()=>document.getElementById("endnote")
+                .classList.add("show"),
+            9000
+        );
+
+    }
+
+},{threshold:.25})
+.observe(document.getElementById("goodbye"));
+
+</script>
+
+</body>
+</html>
